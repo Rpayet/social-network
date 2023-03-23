@@ -1,4 +1,4 @@
-- Les bases
+1 - Les bases
 
 Pour gérer les pages d'erreurs
 ```bash
@@ -15,7 +15,15 @@ Install Symfony Encore Bundle
 composer require symfony/webpack-encore-bundle
 ```
 
-- Clone GitHub
+A faire après le Setup de Encore
+```bash
+npm install
+```
+
+Intégrer Tailwind : https://tailwindcss.com/docs/guides/symfony
+
+
+2 - Clone GitHub
 
 Quand on a cloné le projet, on installe les dépendances avec Composer :
 
@@ -36,10 +44,7 @@ php bin/console doctrine:migrations:migrate
 php bin/console doctrine:fixtures:load
 ```
 
-Pour le front, installer les dépendances avec
-```bash
-npm install
-```
+
 
 Ne pas oublier de compiler le CSS et le JS
 Compile une seule fois
