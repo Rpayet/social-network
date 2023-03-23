@@ -10,6 +10,10 @@ Pack Doctrine ORM
 composer require symfony/orm-pack
 ```
 
+Install Symfony Encore Bundle
+```bash
+composer require symfony/webpack-encore-bundle
+```
 
 - Clone GitHub
 
