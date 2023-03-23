@@ -34,9 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $mail = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -138,18 +135,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
 
         return $this;
     }
