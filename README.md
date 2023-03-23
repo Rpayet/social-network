@@ -22,6 +22,12 @@ npm install
 
 Intégrer Tailwind : https://tailwindcss.com/docs/guides/symfony
 
+Si besoin de React
+```bash
+composer require symfony/ux-react
+npm install
+npm run dev-server
+```
 
 2 - Clone GitHub
 
