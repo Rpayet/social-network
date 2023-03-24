@@ -4,37 +4,63 @@
 
 {% block body %}
 
-<div class="flex justify-center">
-    <div
-        class="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
-        <a href="#!">
-        <div class="flex justify-center">
-            {% if user.picture %}
+<div class="flex gap-6">
+
+    <div class="flex-column justify-center w-2/5 h-2/5">
+
+        <div class="max-w-sm rounded-lg bg-white shadow-lg">
+            <a href="#!">
                 <img
-                    class="w-1/2 rounded-t-lg"
-                    src="{{user.picture}}"
-                    alt="{{user.name}}" />
-            {% else %}
-                <img
-                    class="w-1/2 rounded-t-lg"
-                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41"
-                    alt="{{user.name}}" />
-            {% endif %}
-            
+                    class="rounded-t-lg"
+                    src="{{ app.user.picture }}"
+                    alt="{{ app.user.name }}" />
+            </a>
+            <div class="p-6">
+                <h5
+                    class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                    {{ app.user.name }}
+                </h5>
+                <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200 border-b-2">
+                    Né(e) le {{ app.user.birthdate|date('d/m/Y') }} <span>({{ date('now')|date('Y') - app.user.birthdate|date('Y') }} 
+                        {{ date('now')|date('Y') - app.user.birthdate|date('Y') < 2 ? 'an' : 'ans' }})</span>
+                </p>
+                <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200 border-b-2">
+                    <strong>Email:</strong> {{ app.user.email }} 
+                </p>
+                <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200">
+                    <strong>Biographie :</strong> <br>{{ app.user.biography }} 
+                </p>
+            </div>
         </div>
-        </a>
-        <div class="p-6 bg-gray-200 rounded">
-        <h5
-            class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-            {{user.name}} 
-            <span>({{ date('now')|date('Y') - user.birthdate|date('Y') }} 
-            {{ date('now')|date('Y') - user.birthdate|date('Y') < 2 ? 'an' : 'ans' }})
-            </span>
-        </h5>
-        <p>{{ user.posts|length }} {{ user.posts|length < 2 ? 'publication' : 'publications' }}</p>
-        <a href="{{ path('app_member_show', { 'id' : user.id }) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Voir profil</a>
+
+        <div class="flex-column text-center items-center">
+            <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Modifier</a>
+            <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Déconnexion</a>
         </div>
     </div>
+
+    {# <div class="w-3/5">
+        {% for post in posts %}
+
+            <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
+                <div class="w-20 mt-6 ml-6 ">
+                    <img class="h-auto rounded-full border p-2" src="{{ post.user.picture }}" alt="{{ post.user.pseudo }}">
+                </div>
+                <div class="flex p-6">
+                    <div>
+                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        {{ post.user.name}}
+                        </h5>
+                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        {{ post.content }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+    </div> #}
+
 </div>
 
 {% endblock %}

@@ -15,8 +15,7 @@
     </head>
     <body>
 
-        <nav
-            class="flex w-full items-center justify-between bg-blue-400 py-4 mb-20 shadow-md shadow-black/5">
+        <nav class="fixed flex w-full items-center justify-between bg-blue-400 py-4 mb-20 shadow-md shadow-black/5">
             <div class="flex w-full flex-wrap items-center justify-around px-6">
                 
                 <div
@@ -38,11 +37,14 @@
                     >
                     </li>
                     <li>
-                    <a
-                        class="text-white hover:text-neutral-700 lg:px-2"
-                        href="{{ path('app_member')}}"
-                        >Membres</a
-                    >
+                    {% if app.user %}
+                        <a
+                            class="text-white hover:text-neutral-700 lg:px-2"
+                            href="{{ path('app_member')}}"
+                            >Membres</a
+                        >
+                    {% endif %}
+                    
                     </li>
                 </ul>
                 
@@ -55,7 +57,7 @@
                     <div class="">
                         <a
                         class="flex items-center"
-                        href="">
+                        href="{{ path('app_member_show', { 'id' : app.user.id }) }}">
                         <img
                             src="{{ app.user.picture }}"
                             class="rounded-full"
@@ -86,7 +88,7 @@
             </div>
         </nav>
 
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto pt-32">
         {% block body %}{% endblock %}
         </div>
     </body>

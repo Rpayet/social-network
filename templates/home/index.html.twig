@@ -4,25 +4,52 @@
 
 {% block body %}
 
-    <div class="">
-        {% for post in posts %}
+    <div class="flex gap-6 justify-center">
 
-            <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
-                <div class="w-20 mt-6 ml-6 ">
-                    <img class="h-auto rounded-full border p-2" src="{{ post.user.picture }}" alt="{{ post.user.pseudo }}">
-                </div>
-                <div class="flex p-6">
-                    <div>
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                        {{ post.user.name}}
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                        {{ post.content }}
-                        </p>
+        {% if app.user %}
+            <div class="flex-column justify-center w-2/5 h-2/5">
+
+                <div class="max-w-sm rounded-lg">
+
+                    <a href="{{ path('app_member_show', { 'id' : app.user.id }) }}">
+                        <img
+                            class="rounded-full bg-white border-solid border-4 border-blue-400 shadow-lg"
+                            src="{{ app.user.picture }}"
+                            alt="{{ app.user.name }}" />
+                    </a>
+
+                    <div class="p-6">
+                        <h2 class="mb-2 text-3xl font-medium font-bold leading-tight text-neutral-800 text-center">
+                            Bonjour {{ app.user.name }}, comment vas-tu?
+                        </h2>
+                        
                     </div>
                 </div>
             </div>
-            
-        {% endfor %}
+        {% endif %}
+        
+
+        <div class="w-3/5">
+            {% for post in posts %}
+
+                <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
+                    <div class="w-20 mt-6 ml-6 ">
+                        <img class="h-auto rounded-full border p-2" src="{{ post.user.picture }}" alt="{{ post.user.pseudo }}">
+                    </div>
+                    <div class="flex p-6">
+                        <div>
+                            <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                            {{ post.user.name}}
+                            </h5>
+                            <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                            {{ post.content }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </div>
+
     </div>
 {% endblock %}
