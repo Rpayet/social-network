@@ -21,7 +21,7 @@
                         class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
                         {{user.name}}
                     </h5>
-                    <p>{{count()}}</p>
+                    <p>{{ user.posts|length }} {{ user.posts|length < 2 ? 'publication' : 'publications' }}</p>
                     <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Voir profil</a>
                     </div>
                 </div>
