@@ -24,7 +24,7 @@ class Post
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $Author = null;
+    private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
     private Collection $comments;
@@ -63,14 +63,14 @@ class Post
         return $this;
     }
 
-    public function getAuthor(): ?User
+    public function getUser(): ?User
     {
-        return $this->Author;
+        return $this->user;
     }
 
-    public function setAuthor(?User $Author): self
+    public function setUser(?User $user): self
     {
-        $this->Author = $Author;
+        $this->user = $user;
 
         return $this;
     }

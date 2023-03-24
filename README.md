@@ -29,6 +29,11 @@ npm install
 npm run dev-server
 ```
 
+Faker
+```bash
+composer require fakerphp/faker
+```
+
 2 - Clone GitHub
 
 Quand on a cloné le projet, on installe les dépendances avec Composer :
