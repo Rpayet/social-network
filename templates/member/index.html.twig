@@ -3,17 +3,25 @@
 {% block title %}Membres - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-5 gap-4">
         {% for user in users %}
             <div class="flex justify-center">
                 <div
                     class="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
                     <a href="#!">
                     <div class="flex justify-center">
-                        <img
-                            class="w-1/2 rounded-t-lg"
-                            src="{{user.picture}}"
-                            alt="" />
+                        {% if user.picture %}
+                            <img
+                                class="w-1/2 rounded-t-lg"
+                                src="{{user.picture}}"
+                                alt="{{user.name}}" />
+                        {% else %}
+                            <img
+                                class="w-1/2 rounded-t-lg"
+                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41"
+                                alt="{{user.name}}" />
+                        {% endif %}
+                        
                     </div>
                     </a>
                     <div class="p-6 bg-gray-200 rounded">
