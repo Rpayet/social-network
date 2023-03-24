@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membres - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="grid grid-cols-3 gap-4">
+        {% for user in users %}
+            <div class="flex justify-center">
+                <div
+                    class="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+                    <a href="#!">
+                    <div class="flex justify-center">
+                        <img
+                            class="w-1/2 rounded-t-lg"
+                            src="{{user.picture}}"
+                            alt="" />
+                    </div>
+                    </a>
+                    <div class="p-6 bg-gray-200 rounded">
+                    <h5
+                        class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        {{user.name}}
+                    </h5>
+                    <p>{{count()}}</p>
+                    <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Voir profil</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    
+{% endblock %}
