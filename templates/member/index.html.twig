@@ -33,7 +33,7 @@
                         </span>
                     </h5>
                     <p>{{ user.posts|length }} {{ user.posts|length < 2 ? 'publication' : 'publications' }}</p>
-                    <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Voir profil</a>
+                    <a href="{{ path('app_member_show', { 'id' : user.id }) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Voir profil</a>
                     </div>
                 </div>
             </div>
