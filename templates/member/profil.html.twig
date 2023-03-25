@@ -9,7 +9,7 @@
     <div class="flex-column justify-center w-2/5 h-2/5">
 
         <div class="max-w-sm rounded-lg bg-white shadow-lg">
-            <div>
+            <div class="flex justify-center">
                 {% if user.picture %}
                     <img
                     class="rounded-t-lg"
@@ -29,8 +29,11 @@
                     {{ user.name }}
                 </h5>
                 <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200 border-b-2">
-                    Né(e) le {{ user.birthdate|date('d/m/Y') }} <span>({{ date('now')|date('Y') - user.birthdate|date('Y') }} 
-                        {{ date('now')|date('Y') - user.birthdate|date('Y') < 2 ? 'an' : 'ans' }})</span>
+                    Né(e) le {{ user.birthdate|date('d/m/Y') }} 
+                    <span>
+                    ({{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') }}
+                    {{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') < 2 ? 'an' : 'ans' }})
+                    </span>
                 </p>
                 <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200 border-b-2">
                     <strong>Email:</strong> {{ user.email }} 
