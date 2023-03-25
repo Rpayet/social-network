@@ -31,4 +31,10 @@ class MemberController extends AbstractController
             'user' => $user,
             ]);
     }
+
+    #[Route('/member/{id}/edit', name: 'app_member_edit')]
+    public function edit(): Response
+    {
+        return $this->render('member/edit.html.twig');
+    }
 }
