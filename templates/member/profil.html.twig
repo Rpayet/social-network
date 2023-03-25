@@ -63,13 +63,13 @@
         {% endif %}
         
 
-        {% for post in user.posts %}
+        {% for post in user.posts|sort((a, b) => b.createdAt.timestamp() - a.createdAt.timestamp()) %}
 
-            <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
-                <div class="w-20 mt-6 ml-6 ">
-                    <img class="h-auto rounded-full border p-2" src="{{ user.picture }}" alt="{{ user.pseudo }}">
+            <div class="rounded-lg flex mb-6 bg-white shadow-lg">
+                <div class="w-1/6 p-6">
+                    <img class="rounded-full border" src="{{ user.picture }}" alt="{{ user.pseudo }}">
                 </div>
-                <div class="flex p-6">
+                <div class="w-5/6 flex p-6">
                     <div>
                         <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
                         {{ user.name}}

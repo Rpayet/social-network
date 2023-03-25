@@ -22,7 +22,7 @@ class MemberController extends AbstractController
     public function index(UserRepository $repository): Response
     {
         return $this->render('member/index.html.twig', [
-            'users' => $repository->findAll(),
+            'users' => $repository->findall('id'),
         ]);
     }
 
