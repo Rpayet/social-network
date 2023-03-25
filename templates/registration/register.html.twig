@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    
+    <div class="bg-white max-w-2xl mx-auto px-20 py-10 rounded-lg">
 
-    {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm) }}
+        <h1 class="text-center text-bold text-3xl mb-6">Inscription</h1>
+
         
-        <button type="submit" class="btn">Inscription</button>
-    {{ form_end(registrationForm) }}
+            {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm) }}
+                
+                <button formnovalidate 
+                class="bg-blue-500 w-full hover:bg-blue-700 text-white text-center font-bold py-1 px-2 mt-2 rounded-lg inline-block">
+                Inscription
+                </button>
+
+            {{ form_end(registrationForm) }}
+        
+    </div>
+    
 {% endblock %}

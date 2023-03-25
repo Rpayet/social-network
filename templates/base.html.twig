@@ -14,17 +14,87 @@
         {% endblock %}
     </head>
     <body>
-        <header>
-            <nav>
-                <a href="{{ path('app_home') }}">Accueil</a>
-                <a href="">Membres</a>
-                <a href="{{ path('app_login') }}">Connexion</a>
-                <a href="{{ path('app_register') }}">Inscription</a>
-            </nav>
-        </header>
 
+        <nav class="fixed flex w-full items-center justify-between bg-blue-400 py-4 mb-20 shadow-md shadow-black/5">
+            <div class="flex w-full flex-wrap items-center justify-around px-6">
+                
+                <div
+                class="flex items-center">
+                <a
+                    class="mt-2 mr-2 flex items-center text-neutral-900 hover:text-neutral-900 lg:mt-0"
+                    href="#">
+                    The Social Network
+                </a>
+                
+                <ul
+                    class="list-style-none mr-auto flex pl-0 mx-6"
+                    data-te-navbar-nav-ref>
+                    <li>
+                    <a
+                        class="text-white hover:text-neutral-700 lg:px-2"
+                        href="{{ path('app_home') }}"
+                        >Accueil</a
+                    >
+                    </li>
+                    <li>
+                    {% if app.user %}
+                        <a
+                            class="text-white hover:text-neutral-700 lg:px-2"
+                            href="{{ path('app_member')}}"
+                            >Membres</a
+                        >
+                    {% endif %}
+                    
+                    </li>
+                </ul>
+                
+                </div>
+                                
+                <div class="flex items-center">
+                
+                {% if app.user %}
+                
+                    <div class="">
+                        <a
+                        class="flex items-center"
+                        href="{{ path('app_member_profil', { 'id' : app.user.id }) }}">
+                        <img
+                            src="{{ app.user.picture }}"
+                            class="rounded-full"
+                            style="height: 40px; width: 40px"
+                            alt="{{ app.user.name }}"
+                            />
+                        <span
+                        class="mx-2 text-white hover:text-neutral-700">
+                            {{ app.user.name }}
+                        </span>
+                        </a>
+                    </div>
+
+                {% else %}
+                    
+                    <a
+                    class="text-white hover:text-neutral-700 lg:px-2"
+                    href="{{ path('app_login') }}">Connexion</a>
+                    <a
+                    class="text-white hover:text-neutral-700 lg:px-2"
+                    href="{{ path('app_register') }}">Inscription</a>
+                
+                {% endif %}
+                
+                
+                </div>
+                
+            </div>
+        </nav>
+
+        <div class="max-w-5xl mx-auto pt-32">
         {% block body %}{% endblock %}
-    </body>
+        </div>
 
-    <footer>Tous droits réservés {{ 'now' | date('Y') }}</footer>
+        <footer class="">
+            <p class="text-center">The Social Network - {{ 'now' | date('Y') }} - Tous droits réservés</p>
+        </footer>
+
+    </body>
 </html>
