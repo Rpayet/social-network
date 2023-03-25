@@ -58,12 +58,20 @@
                         <a
                         class="flex items-center"
                         href="{{ path('app_member_profil', { 'id' : app.user.id }) }}">
-                        <img
-                            src="{{ app.user.picture }}"
-                            class="rounded-full"
-                            style="height: 40px; width: 40px"
-                            alt="{{ app.user.name }}"
-                            />
+                        {% if app.user.picture %}
+                            <img
+                                class="rounded-full"
+                                style="height: 40px; width: 40px"
+                                src="{{ app.user.picture }}"
+                                alt="{{ app.user.name }}" />
+                        {% else %}
+                            <img
+                               class="rounded-full"
+                               style="height: 40px; width: 40px"
+                                src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41"
+                                alt="{{ app.user.name }}" />
+                        {% endif %}
+                        
                         <span
                         class="mx-2 text-white hover:text-neutral-700">
                             {{ app.user.name }}

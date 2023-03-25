@@ -9,12 +9,18 @@
     <div class="flex-column justify-center w-2/5 h-2/5">
 
         <div class="max-w-sm rounded-lg bg-white shadow-lg">
-            <a href="#!">
+            {% if user.picture %}
                 <img
-                    class="rounded-t-lg"
+                    class="w-1/2 rounded-t-lg"
                     src="{{ user.picture }}"
                     alt="{{ user.name }}" />
-            </a>
+            {% else %}
+                <img
+                    class="w-1/2 rounded-t-lg"
+                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41"
+                    alt="{{ user.name }}" />
+            {% endif %}
+            
             <div class="p-6">
                 <h5
                     class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
