@@ -45,6 +45,17 @@
     </div>
 
     <div class="w-3/5">
+
+        <div class="w-full">
+            {{ form_start(form) }}
+                
+                {{ form_row(form.content, { attr: { class: 'w-full' }}) }}
+
+                <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-1 px-2 rounded-lg inline-block w-1/2">Ajouter</button>
+
+            {{ form_end(form) }}  
+        </div>
+
         {% for post in user.posts %}
 
             <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
