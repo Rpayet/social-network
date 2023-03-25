@@ -36,7 +36,7 @@
         {% if app.user.id == user.id %}
         
             <div class="flex-column text-center items-center">
-                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Modifier</a>
+                <a href="{{ path('app_member_edit', {'id' : app.user.id }) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Modifier</a>
                 <a href="{{ path('app_logout') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Déconnexion</a>
             </div>
 
