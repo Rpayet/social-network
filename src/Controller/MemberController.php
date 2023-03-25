@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,8 +35,20 @@ class MemberController extends AbstractController
     }
 
     #[Route('/member/{id}/edit', name: 'app_member_edit')]
-    public function edit(): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
-        return $this->render('member/edit.html.twig');
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('app_member', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('member/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
     }
 }
