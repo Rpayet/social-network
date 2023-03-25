@@ -11,7 +11,7 @@
 
                 <div class="max-w-sm rounded-lg">
 
-                    <a href="{{ path('app_member_show', { 'id' : app.user.id }) }}">
+                    <a href="{{ path('app_member_profil', { 'id' : app.user.id }) }}">
                         <img
                             class="rounded-full bg-white border-solid border-4 border-blue-400 shadow-lg"
                             src="{{ app.user.picture }}"
@@ -33,8 +33,8 @@
             {% for post in posts %}
 
                 <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
-                    <div class="w-20 mt-6 ml-6 ">
-                        <img class="h-auto rounded-full border p-2" src="{{ post.user.picture }}" alt="{{ post.user.pseudo }}">
+                    <div class="w-28 mt-6 ml-6 ">
+                        <img class="rounded-full border" src="{{ post.user.picture }}" alt="{{ post.user.pseudo }}">
                     </div>
                     <div class="flex p-6">
                         <div>

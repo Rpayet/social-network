@@ -18,7 +18,7 @@ class MemberController extends AbstractController
         ]);
     }
 
-    #[Route('/member/{id}', name: 'app_member_show')]
+    #[Route('/member/{id}', name: 'app_member_profil')]
     public function show(Request $request, UserRepository $repository, int $id): Response
     {
         $user = $repository->find($id);
@@ -27,7 +27,7 @@ class MemberController extends AbstractController
             throw $this->createNotFoundException('Utilisateur inexistant');
         }
 
-        return $this->render('member/show.html.twig', [
+        return $this->render('member/profil.html.twig', [
             'user' => $user,
             ]);
     }
