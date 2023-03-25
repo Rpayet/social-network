@@ -46,15 +46,22 @@
 
     <div class="w-3/5">
 
-        <div class="w-full">
-            {{ form_start(form) }}
-                
-                {{ form_row(form.content, { attr: { class: 'w-full' }}) }}
+        {% if app.user.id == user.id %}
 
-                <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-1 px-2 rounded-lg inline-block w-1/2">Ajouter</button>
+            <div class="w-full mb-6">
 
-            {{ form_end(form) }}  
-        </div>
+                {{ form_start(form) }}
+                    
+                    {{ form_row(form.content, { attr: { class: 'w-full' }}) }}
+
+                    <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-1 px-2 rounded-lg inline-block w-1/2">Ajouter</button>
+
+                {{ form_end(form) }}  
+
+            </div>
+
+        {% endif %}
+        
 
         {% for post in user.posts %}
 
