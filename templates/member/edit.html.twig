@@ -44,12 +44,20 @@
 
     </div>
 
-    <div class="flex-column justify-center">
+    <div class="bg-white w-3/5 mx-auto px-20 py-10 rounded-lg">
+    
+        <h2 class="text-center text-bold text-xl mb-6">Modifier le profil</h2>
+
         {{ form_start(form) }}
+
             {{ form_widget(form) }}
+
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Valider</button>
+        
         {{ form_end(form) }}
+
     </div>
+    
 </div>
 
 {% endblock %}
