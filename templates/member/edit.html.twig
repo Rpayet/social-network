@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Profil - {{ parent() }}{% endblock %}
+{% block title %}User Modification - {{ parent() }}{% endblock %}
 
 {% block body %}
 
@@ -36,36 +36,28 @@
         {% if app.user.id == user.id %}
         
             <div class="flex-column text-center items-center">
-                <a href="{{ path('app_member_edit', {'id' : app.user.id }) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Modifier</a>
+                <a href="{{ path('app_member_profil', { 'id' : app.user.id }) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Retour</a>
                 <a href="{{ path('app_logout') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 mt-2 rounded-lg inline-block w-1/2">Déconnexion</a>
             </div>
 
         {% endif %}
+
+    </div>
+
+    <div class="bg-white w-3/5 mx-auto px-20 py-10 rounded-lg">
+    
+        <h2 class="text-center text-bold text-xl mb-6">Modifier le profil</h2>
+
+        {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Valider</button>
         
+        {{ form_end(form) }}
+
     </div>
-
-    <div class="w-3/5">
-        {% for post in user.posts %}
-
-            <div class="m-auto rounded-lg flex mb-6 bg-white shadow-lg">
-                <div class="w-20 mt-6 ml-6 ">
-                    <img class="h-auto rounded-full border p-2" src="{{ user.picture }}" alt="{{ user.pseudo }}">
-                </div>
-                <div class="flex p-6">
-                    <div>
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                        {{ user.name}}
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                        {{ post.content }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-        {% endfor %}
-    </div>
-
+    
 </div>
 
 {% endblock %}
