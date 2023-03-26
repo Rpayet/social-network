@@ -28,8 +28,9 @@
                     <h5
                         class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
                         {{user.name}} 
-                        <span class="text-sm">({{ date('now')|date('Y') - user.birthdate|date('Y') }} 
-                        {{ date('now')|date('Y') - user.birthdate|date('Y') < 2 ? 'an' : 'ans' }})
+                        <span class="text-sm">
+                        ({{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') }}
+                        {{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') < 2 ? 'an' : 'ans' }})
                         </span>
                     </h5>
                     <p>{{ user.posts|length }} {{ user.posts|length < 2 ? 'publication' : 'publications' }}</p>

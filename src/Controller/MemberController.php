@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Form\PostType;
 use App\Form\UserType;
+use App\Repository\PostRepository;
 use App\Repository\UserRepository;
+use DateTimeImmutable;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,14 +22,30 @@ class MemberController extends AbstractController
     public function index(UserRepository $repository): Response
     {
         return $this->render('member/index.html.twig', [
-            'users' => $repository->findAll(),
+            'users' => $repository->findall('id'),
         ]);
     }
 
     #[Route('/member/{id}', name: 'app_member_profil')]
-    public function show(Request $request, UserRepository $repository, int $id): Response
+    public function show(Request $request, UserRepository $userRepository, int $id, EntityManagerInterface $manager): Response
     {
-        $user = $repository->find($id);
+        $post = new Post();
+
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $post->setCreatedAt(new \DateTimeImmutable());
+            $post->setUser($this->getUser());
+
+            $manager->persist($post);
+            $manager->flush();
+            
+            return new RedirectResponse($this->generateUrl('app_member_profil', ['id' => $id]));
+        }
+
+        $user = $userRepository->find($id);
 
         if (!$user) {
             throw $this->createNotFoundException('Utilisateur inexistant');
@@ -32,6 +53,7 @@ class MemberController extends AbstractController
 
         return $this->render('member/profil.html.twig', [
             'user' => $user,
+            'form' => $form,
             ]);
     }
 
