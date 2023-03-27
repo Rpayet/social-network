@@ -61,13 +61,16 @@
                 {% if comment.user.picture %}
                     <img class="rounded-full border" src="{{ comment.user.picture }}" alt="{{ comment.user.pseudo }}">
                 {% else %}
-                    <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ user.pseudo }}">
+                    <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ comment.user.pseudo }}">
                 {% endif %}
             </div>
             <div class="w-5/6 flex p-6">
                 <div>
                     <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-                    {{ comment.user.name}}
+                    {{ comment.user.name}} 
+                    <span class="ml-2 text-sm text-slate-400">
+                        {{ post.createdAt|ago }}
+                    </span>
                     </h5>
                     <p class="mb-4 text-base text-neutral-600">
                     {{ comment.content }}

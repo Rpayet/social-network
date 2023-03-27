@@ -88,6 +88,9 @@
                     <div>
                         <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
                         {{ user.name}}
+                            <span class="ml-2 text-sm text-slate-400">
+                                {{ post.createdAt|ago }}
+                            </span>
                         </h5>
                         <p class="mb-4 text-base text-neutral-600">
                         {{ post.content }}
