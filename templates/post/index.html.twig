@@ -57,13 +57,16 @@
     {% for comment in post.comments|sort((a, b) => b.createdAt.timestamp() - a.createdAt.timestamp()) %}
 
         <div class="rounded-lg flex mb-6 bg-white shadow-lg">
-            <div class="w-1/6 p-6">
-                {% if comment.user.picture %}
-                    <img class="rounded-full border" src="{{ comment.user.picture }}" alt="{{ comment.user.pseudo }}">
-                {% else %}
-                    <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ comment.user.pseudo }}">
-                {% endif %}
-            </div>
+            <a class="w-1/6 p-6" href="{{ path('app_member_profil', { 'id' : comment.user.id }) }}">
+
+                <div class="">
+                    {% if comment.user.picture %}
+                        <img class="rounded-full border" src="{{ comment.user.picture }}" alt="{{ comment.user.pseudo }}">
+                    {% else %}
+                        <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ comment.user.pseudo }}">
+                    {% endif %}
+                </div>
+            </a>
             <div class="w-5/6 flex p-6">
                 <div>
                     <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
