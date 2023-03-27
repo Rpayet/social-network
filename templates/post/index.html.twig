@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+<div class="rounded-lg flex mb-6 bg-white shadow-lg">
+    <div class="w-1/6 p-6">
+        {% if post.user.picture %}
+            <img class="rounded-full border" 
+            src="{{ post.user.picture }}" 
+            alt="{{ post.user.pseudo }}">
+        {% else %}
+            <img class="rounded-full border" 
+            src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" 
+            alt="{{ post.user.pseudo }}">
+        {% endif %}
+        
+    </div>
+    <div class="w-5/6 flex p-6">
+        <div>
+            <div class="flex items-center">
+                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+                {{ post.user.name}}
+                </h5>
+                <p class="ml-2 text-sm text-slate-400">Il y a 
+                {{ ((date('now')|date('U') - post.createdAt|date('U'))/ (24 * 60 * 60))|round(0, 'floor') }}
+                {{ ((date('now')|date('U') - post.createdAt|date('U'))/ (24 * 60 * 60))|round(0, 'floor') < 2 ? 'jour' : 'jours' }}
+                </p>
+            </div>
+            <p class="mb-4 text-base text-neutral-600">
+            {{ post.content }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="w-3/5 m-auto">
+
+        
+
+    <div class="w-full mb-6">
+
+        {{ form_start(form) }}
+            
+            {{ form_row(form.content, { attr: { class: 'w-full' }}) }}
+
+            <button class="w-full bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-1 px-2 rounded-lg inline-block">Ajouter</button>
+
+        {{ form_end(form) }}  
+
+    </div>
+
+    
+        
+
+    {% for comment in post.comments|sort((a, b) => b.createdAt.timestamp() - a.createdAt.timestamp()) %}
+
+        <div class="rounded-lg flex mb-6 bg-white shadow-lg">
+            <a class="w-1/6 p-6" href="{{ path('app_member_profil', { 'id' : comment.user.id }) }}">
+
+                <div class="">
+                    {% if comment.user.picture %}
+                        <img class="rounded-full border" src="{{ comment.user.picture }}" alt="{{ comment.user.pseudo }}">
+                    {% else %}
+                        <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ comment.user.pseudo }}">
+                    {% endif %}
+                </div>
+            </a>
+            <div class="w-5/6 flex p-6">
+                <div>
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+                    {{ comment.user.name}} 
+                    <span class="ml-2 text-sm text-slate-400">
+                        {{ post.createdAt|ago }}
+                    </span>
+                    </h5>
+                    <p class="mb-4 text-base text-neutral-600">
+                    {{ comment.content }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    {% endfor %}
+</div>
+
+{% endblock %}

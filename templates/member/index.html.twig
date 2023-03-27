@@ -28,10 +28,15 @@
                     <h5
                         class="mb-2 text-xl font-medium leading-tight text-neutral-800">
                         {{user.name}} 
-                        <span class="text-sm">
-                        ({{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') }}
-                        {{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') < 2 ? 'an' : 'ans' }})
-                        </span>
+                        {% if user.birthdate %}
+                            <span class="text-sm">
+                            ({{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') }}
+                            {{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') < 2 ? 'an' : 'ans' }})
+                            </span>
+                        {% else %}
+                            <span></span>
+                        {% endif %}
+                        
                     </h5>
                     <p>{{ user.posts|length }} {{ user.posts|length < 2 ? 'publication' : 'publications' }}</p>
                     <a href="{{ path('app_member_profil', { 'id' : user.id }) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-center text-lg block w-full">Voir profil</a>

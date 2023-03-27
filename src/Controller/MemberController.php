@@ -6,15 +6,14 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\PostType;
 use App\Form\UserType;
-use App\Repository\PostRepository;
 use App\Repository\UserRepository;
-use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class MemberController extends AbstractController
 {
@@ -22,7 +21,7 @@ class MemberController extends AbstractController
     public function index(UserRepository $repository): Response
     {
         return $this->render('member/index.html.twig', [
-            'users' => $repository->findall('id'),
+            'users' => $repository->findAll('id'),
         ]);
     }
 
@@ -33,7 +32,7 @@ class MemberController extends AbstractController
 
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()){
 
             $post->setCreatedAt(new \DateTimeImmutable());
@@ -58,8 +57,15 @@ class MemberController extends AbstractController
     }
 
     #[Route('/member/{id}/edit', name: 'app_member_edit')]
+    #[IsGranted('ROLE_USER')]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
+        $currentUser = $this->getUser();
+
+        if ( $currentUser != $user ) {
+            throw $this->createNotFoundException();
+        }
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

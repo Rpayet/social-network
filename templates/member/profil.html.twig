@@ -77,23 +77,30 @@
         {% for post in user.posts|sort((a, b) => b.createdAt.timestamp() - a.createdAt.timestamp()) %}
 
             <div class="rounded-lg flex mb-6 bg-white shadow-lg">
-                <div class="w-1/6 p-6">
-                    {% if post.user.picture %}
-                        <img class="rounded-full border" src="{{ user.picture }}" alt="{{ user.pseudo }}">
-                    {% else %}
-                        <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ user.pseudo }}">
-                    {% endif %}
-                </div>
-                <div class="w-5/6 flex p-6">
-                    <div>
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-                        {{ user.name}}
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600">
-                        {{ post.content }}
-                        </p>
+                <a class="w-1/6 p-6" href="{{ path('app_member_profil', { 'id' : post.user.id }) }}">
+                    <div class="">
+                        {% if post.user.picture %}
+                            <img class="rounded-full border" src="{{ user.picture }}" alt="{{ user.pseudo }}">
+                        {% else %}
+                            <img class="rounded-full border" src="https://cdn-icons-png.flaticon.com/512/149/149071.png?w=826&t=st=1679671302~exp=1679671902~hmac=81d998f23c51fabe479ff1108e301d2333070c97c828f6cba895fed5e8f52b41" alt="{{ user.pseudo }}">
+                        {% endif %}
                     </div>
-                </div>
+                </a>
+                <a class="w-5/6 flex p-6" href="{{ path('app_post', {'id' : post.id })}}">
+                    <div class="">
+                        <div>
+                            <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+                            {{ user.name}}
+                                <span class="ml-2 text-sm text-slate-400">
+                                    {{ post.createdAt|ago }}
+                                </span>
+                            </h5>
+                            <p class="mb-4 text-base text-neutral-600">
+                            {{ post.content }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
             
         {% endfor %}
