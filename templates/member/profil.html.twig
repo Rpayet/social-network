@@ -25,20 +25,20 @@
         
             <div class="p-6">
                 <h5
-                    class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                    class="mb-2 text-xl font-medium leading-tight text-neutral-800">
                     {{ user.name }}
                 </h5>
-                <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200 border-b-2">
+                <p class="mb-4 pb-2 text-base text-neutral-600 border-b-2">
                     Né(e) le {{ user.birthdate|date('d/m/Y') }} 
                     <span>
                     ({{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') }}
                     {{ ((date('now')|date('U') - user.birthdate|date('U'))/ (365 * 24 * 60 * 60))|round(0, 'floor') < 2 ? 'an' : 'ans' }})
                     </span>
                 </p>
-                <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200 border-b-2">
+                <p class="mb-4 pb-2 text-base text-neutral-600 border-b-2">
                     <strong>Email:</strong> {{ user.email }} 
                 </p>
-                <p class="mb-4 pb-2 text-base text-neutral-600 dark:text-neutral-200">
+                <p class="mb-4 pb-2 text-base text-neutral-600">
                     <strong>Biographie :</strong> <br>{{ user.biography }} 
                 </p>
             </div>
@@ -86,10 +86,10 @@
                 </div>
                 <div class="w-5/6 flex p-6">
                     <div>
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
                         {{ user.name}}
                         </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        <p class="mb-4 text-base text-neutral-600">
                         {{ post.content }}
                         </p>
                     </div>
